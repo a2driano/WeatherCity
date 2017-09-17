@@ -20,6 +20,9 @@ public class WeatherDTO {
     @SerializedName("coord")
     @Expose
     private Coord coord;
+    @SerializedName("clouds")
+    @Expose
+    private Clouds clouds;
     @SerializedName("weather")
     @Expose
     private List<Weather> weather = null;
@@ -35,9 +38,6 @@ public class WeatherDTO {
     @SerializedName("wind")
     @Expose
     private Wind wind;
-    @SerializedName("clouds")
-    @Expose
-    private Clouds clouds;
     @SerializedName("dt")
     @Expose
     private long dt;
@@ -53,11 +53,6 @@ public class WeatherDTO {
     @SerializedName("cod")
     @Expose
     private long cod;
-
-//    public List<Weather> getWeather() {
-//        return weather;
-//    }
-
 
     public Coord getCoord() {
         return coord;

@@ -1,7 +1,10 @@
-package com.a2driano.sity.my.weather.util.converter;
+package com.a2driano.sity.my.weather.utils.converter;
+
+import android.util.Log;
 
 import com.a2driano.sity.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.sity.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.sity.my.weather.domain.WeatherProvider;
 
 /**
  * Created by Andrii Papai on 17.09.2017.
@@ -11,6 +14,7 @@ public class WeatherConverter {
 
     //convert DTO to DAO
     public static WeatherDAO convertDTOtoDAO(WeatherDTO weatherDTO) {
+        Log.d("probe download", "******************* : " + weatherDTO.toString());
         WeatherDAO weatherDAO = new WeatherDAO();
         weatherDAO.setCityId(weatherDTO.getId());
         weatherDAO.setCityName(weatherDTO.getName());
