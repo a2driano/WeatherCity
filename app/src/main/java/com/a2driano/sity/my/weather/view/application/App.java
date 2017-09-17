@@ -12,6 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class App extends Application {
+    // Openweathermap.org key api
+    public final static String WEATHER_API = "d2a6b21c943e38d9e44edcc03c9912ad";
+
     private Retrofit mRetrofit;
     private static WeatherAPI mWeatherAPI;
 

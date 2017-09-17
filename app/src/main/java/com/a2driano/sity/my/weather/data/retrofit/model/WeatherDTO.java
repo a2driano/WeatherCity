@@ -54,6 +54,11 @@ public class WeatherDTO {
     @Expose
     private long cod;
 
+//    public List<Weather> getWeather() {
+//        return weather;
+//    }
+
+
     public Coord getCoord() {
         return coord;
     }
