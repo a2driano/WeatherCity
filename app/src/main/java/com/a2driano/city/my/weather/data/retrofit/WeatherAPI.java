@@ -17,28 +17,22 @@ import retrofit2.http.Query;
 public interface WeatherAPI {
     @GET("weather")
     Call<WeatherDTO> getResponse(
-            @Query("id") Long id,
+            @Query("q") String name,
             @Query("appid") String appid,
             @Query("units") String units
     );
 //    @GET("weather")
-//    Call<List<WeatherDTO>> getResponse(
+//    Call<WeatherDTO> getResponse(
 //            @Query("id") Long id,
 //            @Query("appid") String appid,
 //            @Query("units") String units
 //    );
 //    @GET("weather")
 //    Call<List<WeatherDTO>> getResponse(
-//            @Query("id") long id,
+//            @Query("id") Long id,
 //            @Query("appid") String appid,
-//            @Query("units") String units,
-//            Callback<List<WeatherDTO>> response
+//            @Query("units") String units
 //    );
-//    void getResponse(
-//            @Query("id") Long cityId,
-//            @Query("appid") String apiKey,
-//            @Query("units") String units,
-//            Callback<List<WeatherDTO>> response
-//    );
+
 //    http://api.openweathermap.org/data/2.5/weather?id=709930&appid=d2a6b21c943e38d9e44edcc03c9912ad&units=metric
 }

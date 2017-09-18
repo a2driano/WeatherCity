@@ -1,41 +1,57 @@
 package com.a2driano.city.my.weather.presenter;
 
 import android.content.Context;
-import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
 
-import com.a2driano.city.my.weather.domain.WeatherProvider;
+import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.city.my.weather.domain.application.App;
+import com.a2driano.city.my.weather.domain.interactors.IteractorCurrentWeather;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by a2driano on 18.09.2017.
  */
 
-public class PresenterSearch {
+public class PresenterSearch implements IteractorCurrentWeather {
     private Context mContext;
-    private long mCityId;
+    private String mCityName;
     private String mUnits;
 
     public PresenterSearch(Context context) {
         mContext = context;
     }
 
-    public void searchCityWheather(long cityId, String units) {
-        mCityId = cityId;
+    public void searchCityWeather(String cityName, String units, View view) {
+        mCityName = cityName;
         mUnits = units;
-        new AsyncSearch().execute();
+//        WeatherDAO weather = new WeatherProvider(cityId, units).getCurrentWeather();
+        WeatherDTO weather = getCurrentWeatherFromServer();
+//        Log.d("PresenterSearch", "******************* weather.toString(): " + weather.toString());
+//        new AsyncSearch().execute();
     }
 
-    private class AsyncSearch extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            long cityId = mCityId;
-            String units = mUnits;
-            new WeatherProvider(cityId, units).getCurrentWeather();
-            return null;
-        }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
+    @Override
+    public WeatherDTO getCurrentWeatherFromServer() {
+        final WeatherDTO[] weatherDTO = {new WeatherDTO()};
+        App.getWeatherAPI().getResponse(mCityName, App.WEATHER_API, mUnits).enqueue(new Callback<WeatherDTO>() {
+            @Override
+            public void onResponse(Call<WeatherDTO> call, Response<WeatherDTO> response) {
+                if (response.isSuccessful() & response.body() != null) {
+                    weatherDTO[0] = response.body();
+                    Log.d("Download", "******************* weatherDTO[0] = response.body().get(0): " + response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WeatherDTO> call, Throwable t) {
+                Log.d("Download", "******************* onFailure");
+            }
+        });
+        return weatherDTO[0];
     }
 }

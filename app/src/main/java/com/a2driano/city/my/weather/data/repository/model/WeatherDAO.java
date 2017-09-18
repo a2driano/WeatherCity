@@ -187,4 +187,29 @@ public class WeatherDAO {
     public void setDeg(long deg) {
         this.deg = deg;
     }
+
+    @Override
+    public String toString() {
+        return "WeatherDAO{" +
+                "cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
+                ", date=" + date +
+                ", visibility=" + visibility +
+                ", allClouds=" + allClouds +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", tempMin=" + tempMin +
+                ", tempMax=" + tempMax +
+                ", temp=" + temp +
+                ", sunrise=" + sunrise +
+                ", sunset=" + sunset +
+                ", countryIndex='" + countryIndex + '\'' +
+                ", weatherId=" + weatherId +
+                ", mainWeather='" + mainWeather + '\'' +
+                ", description='" + description + '\'' +
+                ", icon='" + icon + '\'' +
+                ", speed=" + speed +
+                ", deg=" + deg +
+                '}';
+    }
 }

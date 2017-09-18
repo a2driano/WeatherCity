@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.a2driano.city.my.weather.R;
-import com.a2driano.city.my.weather.domain.WeatherProvider;
 import com.a2driano.city.my.weather.presenter.PresenterSearch;
 
 /**
@@ -60,7 +59,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button:
 //                Log.d("probe download", "******************* : " + new WeatherProvider(709930, "metric").getCurrentWeather().toString());
-                mPresenter.searchCityWheather(709930, "metric");
+                mPresenter.searchCityWeather("Dnipropetrovsk", "metric", null);
 //                new WeatherProvider(709930, "metric").getCurrentWeather();
                 break;
         }
