@@ -24,6 +24,7 @@ public class WeatherConverter {
         weatherDAO.setHumidity(weatherDTO.getMain().getHumidity());
         weatherDAO.setTempMin(weatherDTO.getMain().getTempMin());
         weatherDAO.setTempMax(weatherDTO.getMain().getTempMax());
+        weatherDAO.setTemp(weatherDTO.getMain().getTemp());
         weatherDAO.setSunrise(weatherDTO.getSys().getSunrise());
         weatherDAO.setSunset(weatherDTO.getSys().getSunset());
         weatherDAO.setCountryIndex(weatherDTO.getSys().getCountry());

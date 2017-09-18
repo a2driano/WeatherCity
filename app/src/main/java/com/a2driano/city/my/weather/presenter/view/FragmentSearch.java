@@ -60,8 +60,8 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button:
 //                Log.d("probe download", "******************* : " + new WeatherProvider(709930, "metric").getCurrentWeather().toString());
-//                mPresenter.searchCityWheather(709930, "metric");
-                new WeatherProvider(709930, "metric").getCurrentWeather();
+                mPresenter.searchCityWheather(709930, "metric");
+//                new WeatherProvider(709930, "metric").getCurrentWeather();
                 break;
         }
 

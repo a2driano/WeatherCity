@@ -19,6 +19,7 @@ public class CurrentWeather {
     private long humidity;
     private long tempMin;
     private long tempMax;
+    private double temp;
 
     //sys
     private long sunrise;

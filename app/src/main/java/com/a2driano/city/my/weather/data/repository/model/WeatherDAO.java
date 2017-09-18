@@ -19,6 +19,7 @@ public class WeatherDAO {
     private long humidity;
     private long tempMin;
     private long tempMax;
+    private double temp;
 
     //sys
     private long sunrise;
@@ -29,11 +30,19 @@ public class WeatherDAO {
     private long weatherId;
     private String mainWeather; //exam: "main": "Rain"
     private String description; //exam: "description": "light rain"
-    private String icon; //icon name file
+    private String icon; //icon file name
 
     //wind
     private long speed;
     private long deg;
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
 
     public long getCityId() {
         return cityId;

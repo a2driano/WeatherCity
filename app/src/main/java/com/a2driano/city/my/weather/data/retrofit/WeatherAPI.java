@@ -5,7 +5,9 @@ import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -13,12 +15,25 @@ import retrofit2.http.Query;
  */
 
 public interface WeatherAPI {
-    @GET("weather?")
-    Call<List<WeatherDTO>> getResponse(
-            @Query("id") Long cityId,
-            @Query("appid") String apiKey,
+    @GET("weather")
+    Call<WeatherDTO> getResponse(
+            @Query("id") Long id,
+            @Query("appid") String appid,
             @Query("units") String units
     );
+//    @GET("weather")
+//    Call<List<WeatherDTO>> getResponse(
+//            @Query("id") Long id,
+//            @Query("appid") String appid,
+//            @Query("units") String units
+//    );
+//    @GET("weather")
+//    Call<List<WeatherDTO>> getResponse(
+//            @Query("id") long id,
+//            @Query("appid") String appid,
+//            @Query("units") String units,
+//            Callback<List<WeatherDTO>> response
+//    );
 //    void getResponse(
 //            @Query("id") Long cityId,
 //            @Query("appid") String apiKey,
