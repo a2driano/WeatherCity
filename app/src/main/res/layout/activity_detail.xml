@@ -5,6 +5,6 @@
     android:id="@+id/container_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.a2driano.sity.my.weather.view.activity.DetailActivity">
+    tools:context=".presenter.view.activity.DetailActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:id="@+id/activity_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.a2driano.sity.my.weather.view.activity.MainActivity">
+    tools:context=".presenter.view.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
