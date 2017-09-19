@@ -103,6 +103,12 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
 
 //                new WeatherProvider(709930, "metric").getCurrentWeather();
                 break;
+            case R.id.button_add_to_favorites:
+                mPresenter.addCityToFavorites();
+//                FragmentFavorite favorite = (FragmentFavorite) getActivity().getSupportFragmentManager().findFragmentById(R.id.favorite_id);
+//                favorite.onResume();
+                Toast.makeText(getActivity(), R.string.add_to_favorite, Toast.LENGTH_SHORT).show();
+                break;
         }
 
 

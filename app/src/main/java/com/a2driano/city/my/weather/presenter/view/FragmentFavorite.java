@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.a2driano.city.my.weather.R;
+import com.a2driano.city.my.weather.presenter.PresenterFavorite;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,9 +18,13 @@ import com.a2driano.city.my.weather.R;
  * create an instance of this fragment.
  */
 public class FragmentFavorite extends Fragment {
+    private LinearLayout mLinearLayout;
+    private PresenterFavorite mPresenterFavorite;
+
     public FragmentFavorite() {
         // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -37,14 +43,30 @@ public class FragmentFavorite extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mPresenterFavorite = new PresenterFavorite(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_favorite, container, false);
+
+        mLinearLayout = (LinearLayout) rootView.findViewById(R.id.container_scroll);
+
+//        mPresenterFavorite.loadFavorites(mLinearLayout);
+
+        return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenterFavorite.loadFavorites(mLinearLayout);
+        mLinearLayout.invalidate();
+    }
 
+    public void refreshLayout(){
+//        mPresenterFavorite.loadFavorites(mLinearLayout);
+//        mLinearLayout.invalidate();
+    }
 }

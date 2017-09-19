@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.a2driano.city.my.weather.domain.application.App.getDataDelivery;
 import static com.a2driano.city.my.weather.utils.converter.WeatherConverter.convertDTOtoDAO;
 import static com.a2driano.city.my.weather.utils.converter.animation.AnimationCommon.visibleAnimation;
 
@@ -30,6 +31,7 @@ public class PresenterSearch implements IteractorCurrentWeather {
     private String mCityName;
     private String mUnits;
     private View mView;
+    private WeatherDAO mWeather;
 
     public PresenterSearch(Context context) {
         mContext = context;
@@ -57,6 +59,9 @@ public class PresenterSearch implements IteractorCurrentWeather {
 //                    weatherDTO[0] = response.body();
                     bindingView(convertDTOtoDAO(response.body()));
                     Log.d("Download", "******************* weatherDTO[0] = response.body().get(0): " + response.body().toString());
+                } else if (!response.isSuccessful()) {
+                    Log.d("Download", "******************* response.code() == 401");
+                    Log.d("Download", "******************* response.code(): " + response.code());
                 }
             }
 
@@ -69,10 +74,15 @@ public class PresenterSearch implements IteractorCurrentWeather {
         return weatherDTO[0];
     }
 
+    public void addCityToFavorites() {
+        getDataDelivery().addCityWeather(mWeather);
+    }
+
     /**
      * When response is success - binding data to GroupView
      */
     private void bindingView(WeatherDAO weather) {
+        mWeather = weather;
         //icon
         ImageView WeatherIcon = (ImageView) mView.findViewById(R.id.icon_weather);
         //text view`s
@@ -89,4 +99,6 @@ public class PresenterSearch implements IteractorCurrentWeather {
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);
     }
+
+
 }

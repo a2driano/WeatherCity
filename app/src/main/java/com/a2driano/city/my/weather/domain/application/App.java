@@ -2,6 +2,8 @@ package com.a2driano.city.my.weather.domain.application;
 
 import android.app.Application;
 
+import com.a2driano.city.my.weather.data.repository.DataDelivery;
+import com.a2driano.city.my.weather.data.repository.DataDeliveryImpl;
 import com.a2driano.city.my.weather.data.retrofit.WeatherAPI;
 
 import retrofit2.Retrofit;
@@ -16,6 +18,7 @@ public class App extends Application {
     public final static String WEATHER_API = "d2a6b21c943e38d9e44edcc03c9912ad";
 
     private static WeatherAPI mWeatherAPI;
+    private static DataDelivery mDataDelivery;
     private Retrofit mRetrofit;
 
     private String url = "http://api.openweathermap.org/data/2.5/";
@@ -30,9 +33,15 @@ public class App extends Application {
                 .build();
 
         mWeatherAPI = mRetrofit.create(WeatherAPI.class);
+
+        mDataDelivery = new DataDeliveryImpl(getApplicationContext());
     }
 
     public static WeatherAPI getWeatherAPI() {
         return mWeatherAPI;
+    }
+
+    public static DataDelivery getDataDelivery() {
+        return mDataDelivery;
     }
 }
