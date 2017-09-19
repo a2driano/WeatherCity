@@ -3,6 +3,7 @@ package com.a2driano.city.my.weather.presenter.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.presenter.PresenterSearch;
 
-import static com.a2driano.city.my.weather.utils.converter.animation.AnimationCommon.hideAnimation;
+import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.hideAnimation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,8 +94,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                         mWeatherCityLayout.setVisibility(View.GONE);
                         hideAnimation(getActivity(), mWeatherCityLayout);
                     }
-                    Log.d("probe download", "******************* mSearchEditText.getText().toString(): " + mSearchEditText.getText().toString());
-//                    mPresenter.searchCityWeather("Dnipropetrovsk", "metric", null);
                     mPresenter.searchCityWeather(cityName, "metric", mWeatherCityLayout);
                 } else {
                     Toast.makeText(getActivity(), R.string.edit_text_is_empty, Toast.LENGTH_SHORT).show();
@@ -105,8 +104,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                 break;
             case R.id.button_add_to_favorites:
                 mPresenter.addCityToFavorites();
-//                FragmentFavorite favorite = (FragmentFavorite) getActivity().getSupportFragmentManager().findFragmentById(R.id.favorite_id);
-//                favorite.onResume();
                 Toast.makeText(getActivity(), R.string.add_to_favorite, Toast.LENGTH_SHORT).show();
                 break;
         }

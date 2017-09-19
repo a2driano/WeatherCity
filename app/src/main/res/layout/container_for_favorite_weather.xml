@@ -12,7 +12,7 @@
     android:layout_marginRight="15dp"
     android:layout_marginTop="7dp"
     android:background="@drawable/city_background_radius"
-    android:padding="15dp"
+    android:padding="10dp"
     android:visibility="visible">
 
     <TextView
@@ -24,45 +24,49 @@
         android:layout_toEndOf="@+id/temperature_main_text"
         android:layout_toRightOf="@+id/temperature_main_text"
         android:text=" \u2103"
-        android:textSize="35sp"/>
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/temperature_main_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/city_name_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/icon_weather"
+        android:layout_toRightOf="@+id/icon_weather"
         android:gravity="center"
         android:text="23.5"
-        android:textSize="65sp"/>
+        android:textSize="45sp"/>
 
     <TextView
         android:id="@+id/city_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="City Name"
-        android:textSize="40sp"/>
+        android:textSize="24sp"/>
 
     <ImageView
         android:id="@+id/icon_weather"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
         android:layout_alignBottom="@+id/text_view_temp"
-        android:layout_toLeftOf="@+id/temperature_main_text"
-        android:layout_toStartOf="@+id/temperature_main_text"
-        app:srcCompat="@android:drawable/ic_menu_gallery"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <LinearLayout
         android:id="@+id/cloudiness_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/temperature_main_text"
-        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/temperature_main_text"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/text_view_temp"
+        android:layout_toRightOf="@+id/text_view_temp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/cloud_header"
@@ -70,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cloud_header"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/cloud_info"
@@ -78,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sky is clear"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
     </LinearLayout>
 
     <Button

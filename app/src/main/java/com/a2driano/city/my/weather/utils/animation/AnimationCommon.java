@@ -1,4 +1,4 @@
-package com.a2driano.city.my.weather.utils.converter.animation;
+package com.a2driano.city.my.weather.utils.animation;
 
 import android.content.Context;
 import android.view.View;

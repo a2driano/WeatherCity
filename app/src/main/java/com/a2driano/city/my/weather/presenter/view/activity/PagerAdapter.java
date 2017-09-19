@@ -2,6 +2,7 @@ package com.a2driano.city.my.weather.presenter.view.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.a2driano.city.my.weather.presenter.view.FragmentFavorite;
@@ -34,7 +35,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+    @Override
     public int getItemPosition(Object object) {
+        // POSITION_NONE makes it possible to reload the PagerAdapter
         return POSITION_NONE;
     }
 

@@ -3,6 +3,7 @@ package com.a2driano.city.my.weather.presenter;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +19,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.a2driano.city.my.weather.domain.application.App.getDataDelivery;
 import static com.a2driano.city.my.weather.utils.converter.WeatherConverter.convertDTOtoDAO;
-import static com.a2driano.city.my.weather.utils.converter.animation.AnimationCommon.visibleAnimation;
+import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.visibleAnimation;
 
 /**
  * Created by a2driano on 18.09.2017.
@@ -98,7 +100,8 @@ public class PresenterSearch implements IteractorCurrentWeather {
         //animation
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);
+
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-
-
 }
