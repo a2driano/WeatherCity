@@ -12,6 +12,7 @@ import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
 import com.a2driano.city.my.weather.domain.application.App;
 import com.a2driano.city.my.weather.domain.interactors.IteractorCurrentWeather;
+import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,6 +69,9 @@ public class PresenterSearch implements IteractorCurrentWeather {
         return weatherDTO[0];
     }
 
+    /**
+     * When response is success - binding data to GroupView
+     */
     private void bindingView(WeatherDAO weather) {
         //icon
         ImageView WeatherIcon = (ImageView) mView.findViewById(R.id.icon_weather);
@@ -75,11 +79,12 @@ public class PresenterSearch implements IteractorCurrentWeather {
         TextView CityName = (TextView) mView.findViewById(R.id.city_name_text);
         TextView Temperature = (TextView) mView.findViewById(R.id.temperature_main_text);
         TextView CloudWeather = (TextView) mView.findViewById(R.id.cloud_info);
-
+        //set text
         CityName.setText(weather.getCityName());
         Temperature.setText("" + weather.getTemp());
         CloudWeather.setText(weather.getDescription());
-
+        //load icon from server
+        Glide.with(mContext).load(weather.getIconDownloadUrl()).into(WeatherIcon);
         //animation
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);

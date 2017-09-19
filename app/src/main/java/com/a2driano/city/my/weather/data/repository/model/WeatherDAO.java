@@ -36,6 +36,10 @@ public class WeatherDAO {
     private long speed;
     private long deg;
 
+    public String getIconDownloadUrl() {
+        return "http://openweathermap.org/img/w/" + icon + ".png";
+    }
+
     public double getTemp() {
         return temp;
     }

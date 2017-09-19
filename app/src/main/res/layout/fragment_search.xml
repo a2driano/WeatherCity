@@ -84,9 +84,9 @@
 
         <ImageView
             android:id="@+id/icon_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/text_view_temp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignBottom="@+id/text_view_temp"
             android:layout_toLeftOf="@+id/temperature_main_text"
             android:layout_toStartOf="@+id/temperature_main_text"
             app:srcCompat="@android:drawable/ic_menu_gallery"/>
