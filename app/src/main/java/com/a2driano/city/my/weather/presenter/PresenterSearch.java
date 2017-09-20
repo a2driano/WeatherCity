@@ -97,6 +97,7 @@ public class PresenterSearch implements IteractorCurrentWeather {
         CloudWeather.setText(weather.getDescription());
         //load icon from server
         Glide.with(mContext).load(weather.getIconDownloadUrl()).into(WeatherIcon);
+        Log.d("Icon bindingView", "******************* weather.getIconDownloadUrl():" + weather.getIconDownloadUrl());
         //animation
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);

@@ -42,4 +42,9 @@ public class DataDeliveryImpl implements DataDelivery {
     public void addCitiesWeather(List<WeatherDAO> weatherDAOList) {
         mDataLab.addCitiesWeather(weatherDAOList);
     }
+
+    @Override
+    public void deleteCityWeather(long cityId) {
+        mDataLab.deleteCityWeather(cityId);
+    }
 }

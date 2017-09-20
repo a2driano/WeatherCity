@@ -35,4 +35,9 @@ public interface DataDelivery {
      * add city`s
      */
     public void addCitiesWeather(List<WeatherDAO> weatherDAOList);
+
+    /**
+     * delete city by id
+     */
+    public void deleteCityWeather(long cityId);
 }

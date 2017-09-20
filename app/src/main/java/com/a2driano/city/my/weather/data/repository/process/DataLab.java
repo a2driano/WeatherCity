@@ -85,6 +85,11 @@ public class DataLab {
                 Cols.CITY_ID + " = ?", new String[]{"" + number});
     }
 
+    public void deleteCityWeather(long number) {
+        mDatabase.delete(WeatherTable.NAME,
+                Cols.CITY_ID + " = ?", new String[]{"" + number});
+    }
+
     public void addCitiesWeather(List<WeatherDAO> citiesWeather) {
         for (WeatherDAO cities : citiesWeather) {
             addCityWeather(cities);
@@ -122,7 +127,7 @@ public class DataLab {
         contentValues.put(Cols.WEATHER_ID, weather.getWeatherId());
         contentValues.put(Cols.MAIN_WEATHER, weather.getMainWeather());
         contentValues.put(Cols.DESCRIPTION_WEATHER, weather.getDescription());
-        contentValues.put(Cols.ICON_FILE_NAME, weather.getCityId());
+        contentValues.put(Cols.ICON_FILE_NAME, weather.getIcon());
         contentValues.put(Cols.WIND_SPEED, weather.getSpeed());
         contentValues.put(Cols.CITY_ID, weather.getCityId());
         contentValues.put(Cols.WIND_DEG, weather.getDeg());

@@ -7,95 +7,102 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/relativeLayout"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="7dp"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginTop="7dp"
-    android:background="@drawable/city_background_radius"
-    android:padding="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
     android:visibility="visible">
 
-    <TextView
-        android:id="@+id/text_view_temp"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/widget_weather_favorite"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/temperature_main_text"
-        android:layout_alignBottom="@+id/temperature_main_text"
-        android:layout_toEndOf="@+id/temperature_main_text"
-        android:layout_toRightOf="@+id/temperature_main_text"
-        android:text=" \u2103"
-        android:textSize="25sp"/>
-
-    <TextView
-        android:id="@+id/temperature_main_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/city_name_text"
-        android:layout_toEndOf="@+id/icon_weather"
-        android:layout_toRightOf="@+id/icon_weather"
-        android:gravity="center"
-        android:text="23.5"
-        android:textSize="45sp"/>
-
-    <TextView
-        android:id="@+id/city_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:text="City Name"
-        android:textSize="24sp"/>
-
-    <ImageView
-        android:id="@+id/icon_weather"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
-        android:layout_alignBottom="@+id/text_view_temp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <LinearLayout
-        android:id="@+id/cloudiness_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/temperature_main_text"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/text_view_temp"
-        android:layout_toRightOf="@+id/text_view_temp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="@drawable/city_background_radius"
+        android:padding="10dp">
 
         <TextView
-            android:id="@+id/cloud_header"
+            android:id="@+id/text_view_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cloud_header"
-            android:textSize="14sp"/>
+            android:layout_alignBaseline="@+id/temperature_main_text"
+            android:layout_alignBottom="@+id/temperature_main_text"
+            android:layout_toEndOf="@+id/temperature_main_text"
+            android:layout_toRightOf="@+id/temperature_main_text"
+            android:text=" \u2103"
+            android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/cloud_info"
+            android:id="@+id/temperature_main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sky is clear"
-            android:textSize="14sp"/>
-    </LinearLayout>
+            android:layout_below="@+id/city_name_text"
+            android:layout_toEndOf="@+id/icon_weather"
+            android:layout_toRightOf="@+id/icon_weather"
+            android:gravity="center"
+            android:text="23.5"
+            android:textSize="45sp"/>
 
-    <Button
-        android:id="@+id/button_delete_from_favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cloudiness_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
-        android:background="@drawable/button_search_city"
-        android:padding="15dp"
-        android:text="@string/add_to_favorites"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone"/>
+        <TextView
+            android:id="@+id/city_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="City Name"
+            android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/icon_weather"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignBottom="@+id/text_view_temp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            app:srcCompat="@android:drawable/ic_menu_gallery"/>
+
+        <LinearLayout
+            android:id="@+id/cloudiness_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/temperature_main_text"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/text_view_temp"
+            android:layout_toRightOf="@+id/text_view_temp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cloud_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cloud_header"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/cloud_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sky is clear"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="@string/delete_button_symbol"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/button_search_city"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+
+
 
 </RelativeLayout>

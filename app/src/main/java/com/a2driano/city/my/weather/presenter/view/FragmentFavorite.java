@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.a2driano.city.my.weather.R;
@@ -42,7 +43,7 @@ public class FragmentFavorite extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(false);
+        setRetainInstance(false); //refresh fragment when slide to this fragment
 
         mPresenterFavorite = new PresenterFavorite(getActivity());
     }
@@ -53,7 +54,6 @@ public class FragmentFavorite extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_favorite, container, false);
 
         mLinearLayout = (LinearLayout) rootView.findViewById(R.id.container_scroll);
-
         mPresenterFavorite.loadFavorites(mLinearLayout);
 
         return rootView;
@@ -61,8 +61,6 @@ public class FragmentFavorite extends Fragment {
 
     @Override
     public void onResume() {
-
-
         super.onResume();
     }
 
@@ -70,8 +68,9 @@ public class FragmentFavorite extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            mPresenterFavorite.loadFavorites(mLinearLayout);
+            mPresenterFavorite.loadFavorites(mLinearLayout); //refresh fragment
         } else {
         }
     }
+
 }

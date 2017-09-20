@@ -15,5 +15,6 @@
 
     <string name="city_name_error">Wrong city name</string>
     <string name="internet_error">No internet connection</string>
+    <string name="delete_button_symbol">X</string>
 
 </resources>

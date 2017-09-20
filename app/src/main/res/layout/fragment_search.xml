@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@drawable/city_background_radius"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <EditText
             android:id="@+id/search_edit_text"
