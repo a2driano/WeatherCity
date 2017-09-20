@@ -2,7 +2,6 @@ package com.a2driano.city.my.weather.presenter.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +42,7 @@ public class FragmentFavorite extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(false);
 
         mPresenterFavorite = new PresenterFavorite(getActivity());
     }
@@ -54,15 +54,24 @@ public class FragmentFavorite extends Fragment {
 
         mLinearLayout = (LinearLayout) rootView.findViewById(R.id.container_scroll);
 
-//        mPresenterFavorite.loadFavorites(mLinearLayout);
+        mPresenterFavorite.loadFavorites(mLinearLayout);
 
         return rootView;
     }
 
     @Override
     public void onResume() {
-        mPresenterFavorite.loadFavorites(mLinearLayout);
+
 
         super.onResume();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mPresenterFavorite.loadFavorites(mLinearLayout);
+        } else {
+        }
     }
 }
