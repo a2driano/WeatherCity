@@ -13,8 +13,8 @@ public class WeatherConverter {
 
     //convert DTO to DAO
     public static WeatherDAO convertDTOtoDAO(WeatherDTO weatherDTO) {
-        Log.d("probe download", "******************* : " + weatherDTO.toString());
         WeatherDAO weatherDAO = new WeatherDAO();
+
         weatherDAO.setCityId(weatherDTO.getId());
         weatherDAO.setCityName(weatherDTO.getName());
         weatherDAO.setDate(weatherDTO.getDt());

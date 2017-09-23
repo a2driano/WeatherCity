@@ -1,5 +1,7 @@
 package com.a2driano.city.my.weather.data.repository.model;
 
+import java.util.Calendar;
+
 /**
  * Created by Andrii Papai on 17.09.2017.
  */
@@ -38,6 +40,12 @@ public class WeatherDAO {
 
     public String getIconDownloadUrl() {
         return "http://openweathermap.org/img/w/" + icon + ".png";
+    }
+
+    public Calendar getCalendarDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date * 1000);
+        return calendar;
     }
 
     public double getTemp() {

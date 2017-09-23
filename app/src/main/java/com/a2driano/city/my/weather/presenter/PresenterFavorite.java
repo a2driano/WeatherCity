@@ -1,12 +1,10 @@
 package com.a2driano.city.my.weather.presenter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,12 +13,12 @@ import android.widget.TextView;
 import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.domain.application.App;
+import com.a2driano.city.my.weather.utils.converter.TimeWeatherConverter;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import static com.a2driano.city.my.weather.domain.application.App.getDataDelivery;
-import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.visibleAnimation;
 
 /**
  * Created by a2driano on 18.09.2017.
@@ -67,7 +65,7 @@ public class PresenterFavorite {
     private void bindingView(WeatherDAO weather) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final RelativeLayout viewWidget = (RelativeLayout) inflater.inflate(R.layout.container_for_favorite_weather, null);
-//        view.setTag(TAG_VIEW, weather);
+        //add object WeatherDao
         viewWidget.setTag(weather);
         //icon
         ImageView WeatherIcon = (ImageView) viewWidget.findViewById(R.id.icon_weather);
@@ -75,10 +73,12 @@ public class PresenterFavorite {
         TextView CityName = (TextView) viewWidget.findViewById(R.id.city_name_text);
         TextView Temperature = (TextView) viewWidget.findViewById(R.id.temperature_main_text);
         TextView CloudWeather = (TextView) viewWidget.findViewById(R.id.cloud_info);
+        TextView DateTimeText = (TextView) viewWidget.findViewById(R.id.date_time_weather_text);
         //set text
         CityName.setText(weather.getCityName());
         Temperature.setText("" + weather.getTemp());
         CloudWeather.setText(weather.getDescription());
+        DateTimeText.setText(TimeWeatherConverter.timeConverter(weather.getDate(), mContext));
         //load icon from server
         Glide.with(mContext).load(weather.getIconDownloadUrl()).into(WeatherIcon);
 

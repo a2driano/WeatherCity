@@ -10,11 +10,15 @@
     <string name="edit_text_is_empty">Add search text</string>
     <string name="city_name">City name</string>
     <string name="add_to_favorites">Add to favorites</string>
-    <string name="cloud_header">Cloudiness: </string>
-    <string name="add_to_favorite">City add to favorites</string>
+    <string name="cloud_header">Cloudiness:&#160;</string>
 
+    <!-- toasts text -->
+    <string name="add_to_favorite">City add to favorites</string>
     <string name="city_name_error">Wrong city name</string>
     <string name="internet_error">No internet connection</string>
+
+    <!-- favorites layout-->
     <string name="delete_button_symbol">X</string>
+    <string name="date_today">Today</string>
 
 </resources>

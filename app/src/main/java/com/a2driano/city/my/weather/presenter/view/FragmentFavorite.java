@@ -64,11 +64,12 @@ public class FragmentFavorite extends Fragment {
         super.onResume();
     }
 
+    //refresh fragment
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            mPresenterFavorite.loadFavorites(mLinearLayout); //refresh fragment
+            mPresenterFavorite.loadFavorites(mLinearLayout);
         } else {
         }
     }
