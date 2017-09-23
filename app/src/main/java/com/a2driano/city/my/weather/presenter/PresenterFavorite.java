@@ -25,9 +25,9 @@ import static com.a2driano.city.my.weather.domain.application.App.getDataDeliver
  */
 
 public class PresenterFavorite {
-    private static int TAG_VIEW = 1;
+//    private static int TAG_VIEW = 1;
     private Context mContext;
-    private WeatherDAO mWeather;
+//    private WeatherDAO mWeather;
     private LinearLayout mContainer;
 
     public PresenterFavorite(Context context) {

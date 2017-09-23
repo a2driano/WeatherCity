@@ -61,15 +61,16 @@ public class PresenterSearch implements IteractorCurrentWeather {
 //                    weatherDTO[0] = response.body();
                     bindingView(convertDTOtoDAO(response.body()));
                     Log.d("Download", "******************* weatherDTO[0] = response.body().get(0): " + response.body().toString());
-                } else if (!response.isSuccessful()) {
-                    Log.d("Download", "******************* response.code() == 401");
-                    Log.d("Download", "******************* response.code(): " + response.code());
+                } else if (response.code() == 404) {
+                    Log.d("Download", "******************* response.code() == 404");
+                    Toast.makeText(mContext, R.string.city_name_error, Toast.LENGTH_SHORT).show();
+//                    Log.d("Download", "******************* response.code(): " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<WeatherDTO> call, Throwable t) {
-                Toast.makeText(mContext, R.string.city_name_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.internet_error, Toast.LENGTH_SHORT).show();
                 Log.d("Download", "******************* onFailure");
             }
         });
@@ -102,6 +103,7 @@ public class PresenterSearch implements IteractorCurrentWeather {
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);
 
+        //hide keyboard
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
