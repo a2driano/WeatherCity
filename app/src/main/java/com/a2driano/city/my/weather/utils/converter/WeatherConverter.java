@@ -5,6 +5,9 @@ import android.util.Log;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Andrii Papai on 17.09.2017.
  */
@@ -36,5 +39,15 @@ public class WeatherConverter {
         weatherDAO.setDeg(weatherDTO.getWind().getDeg());
 
         return weatherDAO;
+    }
+
+    //convert List`s DTO to DAO
+    public static List<WeatherDAO> convertListDTOtoDAO(List<WeatherDTO> weatherDTOList) {
+        List<WeatherDAO> weatherDAOList = new ArrayList<>();
+        for (WeatherDTO weather : weatherDTOList) {
+            weatherDAOList.add(convertDTOtoDAO(weather));
+        }
+
+        return weatherDAOList;
     }
 }

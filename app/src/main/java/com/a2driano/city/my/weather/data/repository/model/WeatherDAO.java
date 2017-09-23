@@ -17,10 +17,10 @@ public class WeatherDAO {
     private long allClouds;
 
     //main
-    private long pressure;
-    private long humidity;
-    private long tempMin;
-    private long tempMax;
+    private double pressure;
+    private double humidity;
+    private double tempMin;
+    private double tempMax;
     private double temp;
 
     //sys
@@ -35,8 +35,8 @@ public class WeatherDAO {
     private String icon; //icon file name
 
     //wind
-    private long speed;
-    private long deg;
+    private double speed;
+    private double deg;
 
     public String getIconDownloadUrl() {
         return "http://openweathermap.org/img/w/" + icon + ".png";
@@ -46,14 +46,6 @@ public class WeatherDAO {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date * 1000);
         return calendar;
-    }
-
-    public double getTemp() {
-        return temp;
-    }
-
-    public void setTemp(double temp) {
-        this.temp = temp;
     }
 
     public long getCityId() {
@@ -96,36 +88,44 @@ public class WeatherDAO {
         this.allClouds = allClouds;
     }
 
-    public long getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
-    public void setPressure(long pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
-    public long getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(long humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public long getTempMin() {
+    public double getTempMin() {
         return tempMin;
     }
 
-    public void setTempMin(long tempMin) {
+    public void setTempMin(double tempMin) {
         this.tempMin = tempMin;
     }
 
-    public long getTempMax() {
+    public double getTempMax() {
         return tempMax;
     }
 
-    public void setTempMax(long tempMax) {
+    public void setTempMax(double tempMax) {
         this.tempMax = tempMax;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
     }
 
     public long getSunrise() {
@@ -184,19 +184,19 @@ public class WeatherDAO {
         this.icon = icon;
     }
 
-    public long getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(long speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    public long getDeg() {
+    public double getDeg() {
         return deg;
     }
 
-    public void setDeg(long deg) {
+    public void setDeg(double deg) {
         this.deg = deg;
     }
 

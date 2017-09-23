@@ -32,8 +32,8 @@ public class WeatherCursorWrapper extends CursorWrapper {
         long allClouds = getLong(getColumnIndex(Cols.CLOUDS));
         long pressure = getLong(getColumnIndex(Cols.PRESSURE));
         long humidity = getLong(getColumnIndex(Cols.HUMIDITY));
-        long tempMin = getLong(getColumnIndex(Cols.TEMP_MIN));
-        long tempMax = getLong(getColumnIndex(Cols.TEMP_MAX));
+        double tempMin = getLong(getColumnIndex(Cols.TEMP_MIN));
+        double tempMax = getLong(getColumnIndex(Cols.TEMP_MAX));
         double temp = getDouble(getColumnIndex(Cols.TEMPERATURE));
         long sunrise = getLong(getColumnIndex(Cols.SUNRISE));
         long sunset = getLong(getColumnIndex(Cols.SUNSET));

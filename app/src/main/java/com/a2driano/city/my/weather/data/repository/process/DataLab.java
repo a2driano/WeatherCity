@@ -40,7 +40,8 @@ public class DataLab {
         return null;
     }
 
-    public WeatherDAO getWeather(int cityIndex) {
+    public List<WeatherDAO> getWeather(long cityIndex) {
+        List<WeatherDAO> levelList = new ArrayList<>();
         WeatherCursorWrapper cursor = queryLevels(
                 Cols.CITY_ID + " = ?",
                 new String[]{String.valueOf(cityIndex)}
@@ -50,10 +51,14 @@ public class DataLab {
                 return null;
             }
             cursor.moveToFirst();
-            return cursor.getCityWeather();
+            while (!cursor.isAfterLast()) {
+                levelList.add(cursor.getCityWeather());
+                cursor.moveToNext();
+            }
         } finally {
             cursor.close();
         }
+        return levelList;
     }
 
     public List<WeatherDAO> getCityWeathers() {
@@ -88,6 +93,12 @@ public class DataLab {
     public void deleteCityWeather(long number) {
         mDatabase.delete(WeatherTable.NAME,
                 Cols.CITY_ID + " = ?", new String[]{"" + number});
+    }
+
+    public void deleteCitiesWeather(List<WeatherDAO> citiesWeather) {
+        for (WeatherDAO cities : citiesWeather) {
+            deleteCityWeather(cities.getCityId());
+        }
     }
 
     public void addCitiesWeather(List<WeatherDAO> citiesWeather) {

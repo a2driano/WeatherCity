@@ -14,16 +14,16 @@ public class Main {
     private double temp;
     @SerializedName("pressure")
     @Expose
-    private long pressure;
+    private double pressure;
     @SerializedName("humidity")
     @Expose
-    private long humidity;
+    private double humidity;
     @SerializedName("temp_min")
     @Expose
-    private long tempMin;
+    private double tempMin;
     @SerializedName("temp_max")
     @Expose
-    private long tempMax;
+    private double tempMax;
 
     public double getTemp() {
         return temp;
@@ -33,7 +33,7 @@ public class Main {
         this.temp = temp;
     }
 
-    public long getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
@@ -41,7 +41,7 @@ public class Main {
         this.pressure = pressure;
     }
 
-    public long getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
@@ -49,7 +49,7 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public long getTempMin() {
+    public double getTempMin() {
         return tempMin;
     }
 
@@ -57,7 +57,7 @@ public class Main {
         this.tempMin = tempMin;
     }
 
-    public long getTempMax() {
+    public double getTempMax() {
         return tempMax;
     }
 

@@ -1,6 +1,7 @@
 package com.a2driano.city.my.weather.presenter;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,9 @@ import static com.a2driano.city.my.weather.domain.application.App.getDataDeliver
  */
 
 public class PresenterFavorite {
-//    private static int TAG_VIEW = 1;
     private Context mContext;
-//    private WeatherDAO mWeather;
     private LinearLayout mContainer;
+    private List<WeatherDAO> mListWeather;
 
     public PresenterFavorite(Context context) {
         mContext = context;
@@ -36,16 +36,18 @@ public class PresenterFavorite {
 
     public void loadFavorites(LinearLayout view) {
         mContainer = view;
-        //clear all child view
-        if (mContainer.getChildCount() > 0)
-            mContainer.removeAllViews();
+//        //clear all child view
+//        if (mContainer.getChildCount() > 0)
+//            mContainer.removeAllViews();
 
-        List<WeatherDAO> listWeather = App.getDataDelivery().getCityWeathers();
-        if (!listWeather.isEmpty()) {
-            for (WeatherDAO weather : listWeather) {
-                bindingView(weather);
-            }
-        }
+        new AddWeatherViewToFragment().execute();
+
+//        List<WeatherDAO> listWeather = App.getDataDelivery().getCityWeathers();
+//        if (!listWeather.isEmpty()) {
+//            for (WeatherDAO weather : listWeather) {
+//                bindingView(weather);
+//            }
+//        }
     }
 
     /**
@@ -91,6 +93,28 @@ public class PresenterFavorite {
         });
 
         mContainer.addView(viewWidget);
+    }
+
+    private class AddWeatherViewToFragment extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            mListWeather = App.getDataDelivery().getCityWeathers();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            //clear all child view
+            if (mContainer.getChildCount() > 0)
+                mContainer.removeAllViews();
+
+            if (!mListWeather.isEmpty()) {
+                for (WeatherDAO weather : mListWeather) {
+                    bindingView(weather);
+                }
+            }
+        }
     }
 
 

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.a2driano.city.my.weather.data.repository.DataDelivery;
 import com.a2driano.city.my.weather.data.repository.DataDeliveryImpl;
 import com.a2driano.city.my.weather.data.retrofit.WeatherAPI;
+import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +20,7 @@ public class App extends Application {
 
     private static WeatherAPI mWeatherAPI;
     private static DataDelivery mDataDelivery;
+    private static MessageManager sMessageManager;
     private Retrofit mRetrofit;
 
     private String url = "http://api.openweathermap.org/data/2.5/";
@@ -35,6 +37,8 @@ public class App extends Application {
         mWeatherAPI = mRetrofit.create(WeatherAPI.class);
 
         mDataDelivery = new DataDeliveryImpl(getApplicationContext());
+
+        sMessageManager = MessageManager.getMessageManager(this);
     }
 
     public static WeatherAPI getWeatherAPI() {
@@ -43,5 +47,9 @@ public class App extends Application {
 
     public static DataDelivery getDataDelivery() {
         return mDataDelivery;
+    }
+
+    public static MessageManager getMessageManager() {
+        return sMessageManager;
     }
 }

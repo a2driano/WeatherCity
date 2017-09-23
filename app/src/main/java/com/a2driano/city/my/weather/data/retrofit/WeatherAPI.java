@@ -1,6 +1,7 @@
 package com.a2driano.city.my.weather.data.retrofit;
 
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.city.my.weather.data.retrofit.model.WeatherForecastDTO;
 
 import java.util.List;
 
@@ -21,6 +22,15 @@ public interface WeatherAPI {
             @Query("appid") String appid,
             @Query("units") String units
     );
+
+    @GET("forecast")
+    Call<WeatherForecastDTO> getForecast(
+            @Query("id") Long cityId,
+            @Query("appid") String appid,
+            @Query("units") String units
+    );
+
+
 //    @GET("weather")
 //    Call<WeatherDTO> getResponse(
 //            @Query("id") Long id,

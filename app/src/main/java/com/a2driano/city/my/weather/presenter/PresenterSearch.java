@@ -11,16 +11,16 @@ import android.widget.Toast;
 import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.city.my.weather.domain.WeatherProvider;
 import com.a2driano.city.my.weather.domain.application.App;
-import com.a2driano.city.my.weather.domain.interactors.IteractorCurrentWeather;
+import com.a2driano.city.my.weather.domain.interactors.IteractorCurrentWeatherServer;
+import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.a2driano.city.my.weather.domain.application.App.getDataDelivery;
 import static com.a2driano.city.my.weather.utils.converter.WeatherConverter.convertDTOtoDAO;
 import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.visibleAnimation;
 
@@ -28,7 +28,7 @@ import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.visib
  * Created by a2driano on 18.09.2017.
  */
 
-public class PresenterSearch implements IteractorCurrentWeather {
+public class PresenterSearch implements IteractorCurrentWeatherServer {
     private Context mContext;
     private String mCityName;
     private String mUnits;
@@ -58,19 +58,18 @@ public class PresenterSearch implements IteractorCurrentWeather {
             @Override
             public void onResponse(Call<WeatherDTO> call, Response<WeatherDTO> response) {
                 if (response.isSuccessful() & response.body() != null) {
-//                    weatherDTO[0] = response.body();
                     bindingView(convertDTOtoDAO(response.body()));
-                    Log.d("Download", "******************* weatherDTO[0] = response.body().get(0): " + response.body().toString());
-                } else if (response.code() == 404) {
+                } else if (response.code() != 404) {
+//                    Toast.makeText(mContext, R.string.city_name_error, Toast.LENGTH_SHORT).show();
+                    MessageManager.getMessageCityNameError();
                     Log.d("Download", "******************* response.code() == 404");
-                    Toast.makeText(mContext, R.string.city_name_error, Toast.LENGTH_SHORT).show();
-//                    Log.d("Download", "******************* response.code(): " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<WeatherDTO> call, Throwable t) {
-                Toast.makeText(mContext, R.string.internet_error, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, R.string.internet_error, Toast.LENGTH_SHORT).show();
+                MessageManager.getMessageInternetError();
                 Log.d("Download", "******************* onFailure");
             }
         });
@@ -78,7 +77,11 @@ public class PresenterSearch implements IteractorCurrentWeather {
     }
 
     public void addCityToFavorites() {
-        getDataDelivery().addCityWeather(mWeather);
+//        App.getDataDelivery().addCityWeather(mWeather);
+//        Log.d("Download message", "******************* mWeather.getCityId()" + mWeather.getCityId());
+//        Log.d("Download message", "******************* mWeather.mUnits" + mUnits);
+//        Toast.makeText(mContext, mContext.getText(message), Toast.LENGTH_SHORT).show();
+        new WeatherProvider(mWeather.getCityId(), mUnits).getWeatherFromServer();
     }
 
     /**

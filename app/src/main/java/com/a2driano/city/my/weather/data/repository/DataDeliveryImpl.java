@@ -24,7 +24,7 @@ public class DataDeliveryImpl implements DataDelivery {
     }
 
     @Override
-    public WeatherDAO getWeather(int cityIndex) {
+    public List<WeatherDAO> getWeather(long cityIndex) {
         return mDataLab.getWeather(cityIndex);
     }
 
@@ -46,5 +46,10 @@ public class DataDeliveryImpl implements DataDelivery {
     @Override
     public void deleteCityWeather(long cityId) {
         mDataLab.deleteCityWeather(cityId);
+    }
+
+    @Override
+    public void deleteCitiesWeather(List<WeatherDAO> weatherDAOList) {
+
     }
 }

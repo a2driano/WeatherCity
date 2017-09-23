@@ -16,7 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a2driano.city.my.weather.R;
+import com.a2driano.city.my.weather.domain.application.App;
 import com.a2driano.city.my.weather.presenter.PresenterSearch;
+import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 
 import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.hideAnimation;
 
@@ -96,18 +98,20 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                     }
                     mPresenter.searchCityWeather(cityName, "metric", mWeatherCityLayout);
                 } else {
-                    Toast.makeText(getActivity(), R.string.edit_text_is_empty, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), R.string.edit_text_is_empty, Toast.LENGTH_SHORT).show();
+                    MessageManager.getMessageEmptyName();
                 }
-
 
 //                new WeatherProvider(709930, "metric").getCurrentWeather();
                 break;
             case R.id.button_add_to_favorites:
                 mPresenter.addCityToFavorites();
-                Toast.makeText(getActivity(), R.string.add_to_favorite, Toast.LENGTH_SHORT).show();
+//                if (mPresenter.addCityToFavorites()) { //if success
+//                    Toast.makeText(getActivity(), R.string.add_to_favorite, Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(getActivity(), R.string.internet_error_server, Toast.LENGTH_SHORT).show();
+//                }
                 break;
         }
-
-
     }
 }

@@ -17,9 +17,14 @@ public interface DataDelivery {
     public List<WeatherDAO> getCityWeathers();
 
     /**
-     * Get specific weather from city index
+     * Get List of specific city weather from city index (5 days)
      */
-    public WeatherDAO getWeather(int cityIndex);
+    public List<WeatherDAO> getWeather(long cityIndex);
+
+//    /**
+//     * Get specific weather from city index
+//     */
+//    public WeatherDAO getWeather(int cityIndex);
 
     /**
      * Update weather data
@@ -40,4 +45,9 @@ public interface DataDelivery {
      * delete city by id
      */
     public void deleteCityWeather(long cityId);
+
+    /**
+     * delete city`s by id
+     */
+    public void deleteCitiesWeather(List<WeatherDAO> weatherDAOList);
 }
