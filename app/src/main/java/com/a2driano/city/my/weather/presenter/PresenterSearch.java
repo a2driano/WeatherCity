@@ -15,6 +15,7 @@ import com.a2driano.city.my.weather.domain.application.App;
 import com.a2driano.city.my.weather.domain.interactors.InteractorCurrentWeatherServer;
 import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,9 +95,9 @@ public class PresenterSearch implements InteractorCurrentWeatherServer {
         CityName.setText(weather.getCityName());
         Temperature.setText("" + weather.getTemp());
         CloudWeather.setText(weather.getDescription());
-        //load icon from server
-        Glide.with(mContext).load(weather.getIconDownloadUrl()).into(WeatherIcon);
-        Log.d("Icon bindingView", "******************* weather.getIconDownloadUrl():" + weather.getIconDownloadUrl());
+        //load icon
+        Glide.with(mContext).load(weather.getIconDownloadUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(WeatherIcon);
+
         //animation
         mView.setVisibility(View.VISIBLE);
         visibleAnimation(mContext, mView);

@@ -1,7 +1,6 @@
 package com.a2driano.city.my.weather.domain;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.domain.application.App;

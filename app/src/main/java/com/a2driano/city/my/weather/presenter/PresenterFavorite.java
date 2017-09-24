@@ -16,6 +16,7 @@ import com.a2driano.city.my.weather.domain.WeatherFavoriteProvider;
 import com.a2driano.city.my.weather.domain.interactors.InteractorWeatherFavoriteProvider;
 import com.a2driano.city.my.weather.utils.converter.TimeWeatherConverter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -36,7 +37,6 @@ public class PresenterFavorite {
 
     public void loadFavorites(LinearLayout view) {
         mContainer = view;
-//        new WeatherFavoriteProvider().execute();
         new WeatherFavoriteProvider(new InteractorWeatherFavoriteProvider() {
             @Override
             public void processFinish(List<WeatherDAO> list) {
@@ -53,20 +53,6 @@ public class PresenterFavorite {
             }
         }).execute();
     }
-
-//    @Override
-//    public void processFinish(List<WeatherDAO> list) {
-//        mListWeather = list;
-//        //clear all child view
-//        if (mContainer.getChildCount() > 0)
-//            mContainer.removeAllViews();
-//
-//        if (!mListWeather.isEmpty()) {
-//            for (WeatherDAO weather : mListWeather) {
-//                bindingView(weather);
-//            }
-//        }
-//    }
 
     /**
      * Delete city by tap to current button
@@ -100,7 +86,7 @@ public class PresenterFavorite {
         CloudWeather.setText(weather.getDescription());
         DateTimeText.setText(TimeWeatherConverter.timeConverter(weather.getDate(), mContext));
         //load icon from server
-        Glide.with(mContext).load(weather.getIconDownloadUrl()).into(WeatherIcon);
+        Glide.with(mContext).load(weather.getIconDownloadUrl()).diskCacheStrategy(DiskCacheStrategy.ALL).into(WeatherIcon);
 
         Button button = (Button) viewWidget.findViewById(R.id.button_delete);
         button.setOnClickListener(new View.OnClickListener() {
@@ -112,27 +98,4 @@ public class PresenterFavorite {
 
         mContainer.addView(viewWidget);
     }
-
-
-//    private class AddWeatherViewToFragment extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            mListWeather = App.getDataDelivery().getCityWeathers();
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            //clear all child view
-//            if (mContainer.getChildCount() > 0)
-//                mContainer.removeAllViews();
-//
-//            if (!mListWeather.isEmpty()) {
-//                for (WeatherDAO weather : mListWeather) {
-//                    bindingView(weather);
-//                }
-//            }
-//        }
-//    }
 }
