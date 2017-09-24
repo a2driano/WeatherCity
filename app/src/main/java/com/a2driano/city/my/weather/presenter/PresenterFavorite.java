@@ -1,7 +1,6 @@
 package com.a2driano.city.my.weather.presenter;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,8 @@ import android.widget.TextView;
 
 import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
-import com.a2driano.city.my.weather.domain.application.App;
+import com.a2driano.city.my.weather.domain.WeatherFavoriteProvider;
+import com.a2driano.city.my.weather.domain.interactors.InteractorWeatherFavoriteProvider;
 import com.a2driano.city.my.weather.utils.converter.TimeWeatherConverter;
 import com.bumptech.glide.Glide;
 
@@ -36,19 +36,37 @@ public class PresenterFavorite {
 
     public void loadFavorites(LinearLayout view) {
         mContainer = view;
+//        new WeatherFavoriteProvider().execute();
+        new WeatherFavoriteProvider(new InteractorWeatherFavoriteProvider() {
+            @Override
+            public void processFinish(List<WeatherDAO> list) {
+                mListWeather = list;
+                //clear all child view
+                if (mContainer.getChildCount() > 0)
+                    mContainer.removeAllViews();
+
+                if (!mListWeather.isEmpty()) {
+                    for (WeatherDAO weather : mListWeather) {
+                        bindingView(weather);
+                    }
+                }
+            }
+        }).execute();
+    }
+
+//    @Override
+//    public void processFinish(List<WeatherDAO> list) {
+//        mListWeather = list;
 //        //clear all child view
 //        if (mContainer.getChildCount() > 0)
 //            mContainer.removeAllViews();
-
-        new AddWeatherViewToFragment().execute();
-
-//        List<WeatherDAO> listWeather = App.getDataDelivery().getCityWeathers();
-//        if (!listWeather.isEmpty()) {
-//            for (WeatherDAO weather : listWeather) {
+//
+//        if (!mListWeather.isEmpty()) {
+//            for (WeatherDAO weather : mListWeather) {
 //                bindingView(weather);
 //            }
 //        }
-    }
+//    }
 
     /**
      * Delete city by tap to current button
@@ -95,27 +113,26 @@ public class PresenterFavorite {
         mContainer.addView(viewWidget);
     }
 
-    private class AddWeatherViewToFragment extends AsyncTask<Void, Void, Void> {
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            mListWeather = App.getDataDelivery().getCityWeathers();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            //clear all child view
-            if (mContainer.getChildCount() > 0)
-                mContainer.removeAllViews();
-
-            if (!mListWeather.isEmpty()) {
-                for (WeatherDAO weather : mListWeather) {
-                    bindingView(weather);
-                }
-            }
-        }
-    }
-
-
+//    private class AddWeatherViewToFragment extends AsyncTask<Void, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            mListWeather = App.getDataDelivery().getCityWeathers();
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            //clear all child view
+//            if (mContainer.getChildCount() > 0)
+//                mContainer.removeAllViews();
+//
+//            if (!mListWeather.isEmpty()) {
+//                for (WeatherDAO weather : mListWeather) {
+//                    bindingView(weather);
+//                }
+//            }
+//        }
+//    }
 }

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.city.my.weather.data.retrofit.model.WeatherForecastDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,4 +51,19 @@ public class WeatherConverter {
 
         return weatherDAOList;
     }
+
+    public static List<WeatherDAO> convertWeatherForecastDTOtoWeatherDAO(WeatherForecastDTO weatherForecastDTO) {
+        List<WeatherDAO> weatherDAOList = new ArrayList<>();
+        List<WeatherDTO> weatherDTOList = weatherForecastDTO.getList();
+        for (WeatherDTO weather : weatherDTOList) {
+            //set name & ID from WeatherForecastDTO, because in List body this parameters not exist
+            weather.setName(weatherForecastDTO.getCity().getName());
+            weather.setId(weatherForecastDTO.getCity().getId());
+            weatherDAOList.add(convertDTOtoDAO(weather));
+        }
+
+        return weatherDAOList;
+    }
+
+
 }

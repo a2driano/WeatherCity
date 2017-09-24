@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
 import com.a2driano.city.my.weather.domain.WeatherProvider;
 import com.a2driano.city.my.weather.domain.application.App;
-import com.a2driano.city.my.weather.domain.interactors.IteractorCurrentWeatherServer;
+import com.a2driano.city.my.weather.domain.interactors.InteractorCurrentWeatherServer;
 import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 import com.bumptech.glide.Glide;
 
@@ -28,7 +27,7 @@ import static com.a2driano.city.my.weather.utils.animation.AnimationCommon.visib
  * Created by a2driano on 18.09.2017.
  */
 
-public class PresenterSearch implements IteractorCurrentWeatherServer {
+public class PresenterSearch implements InteractorCurrentWeatherServer {
     private Context mContext;
     private String mCityName;
     private String mUnits;
@@ -77,10 +76,6 @@ public class PresenterSearch implements IteractorCurrentWeatherServer {
     }
 
     public void addCityToFavorites() {
-//        App.getDataDelivery().addCityWeather(mWeather);
-//        Log.d("Download message", "******************* mWeather.getCityId()" + mWeather.getCityId());
-//        Log.d("Download message", "******************* mWeather.mUnits" + mUnits);
-//        Toast.makeText(mContext, mContext.getText(message), Toast.LENGTH_SHORT).show();
         new WeatherProvider(mWeather.getCityId(), mUnits).getWeatherFromServer();
     }
 

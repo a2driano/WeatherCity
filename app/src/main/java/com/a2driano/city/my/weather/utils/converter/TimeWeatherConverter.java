@@ -22,9 +22,10 @@ public class TimeWeatherConverter {
 
         String dateString;
         //check this day is today
-//        if (DateUtils.isToday(date)) {
         if (DateUtils.isToday(dateCalendar.getTimeInMillis())) {
             dateString = context.getString(R.string.date_today);
+            formatDayOfWeek = new SimpleDateFormat("kk:mm");
+            dateString += ", " + formatDayOfWeek.format(dateCalendar.getTime());
         } else {
             dateString = formatDayOfWeek.format(dateCalendar.getTime());
         }

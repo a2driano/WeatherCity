@@ -1,6 +1,7 @@
 package com.a2driano.city.my.weather.domain.interactors;
 
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
+import com.a2driano.city.my.weather.data.retrofit.model.WeatherForecastDTO;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Download 5 day weather from server and save in DB
  */
 
-public interface IteractorWeatherFromServerToDb {
+public interface InteractorWeatherFromServerToDb {
     /**
      * Get weather from server (Forecast - 5 day)
      */
@@ -20,7 +21,7 @@ public interface IteractorWeatherFromServerToDb {
      * Save List<WeatherDTO> to DB.
      * If exist - update, else - create.
      *
-     * @param listDTO
+     * @param weatherForecastDTO
      */
-    public void saveWeatherToDb(List<WeatherDTO> listDTO);
+    public void saveWeatherToDb(WeatherForecastDTO weatherForecastDTO);
 }

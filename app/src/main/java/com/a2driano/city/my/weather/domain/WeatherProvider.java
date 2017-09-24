@@ -2,12 +2,11 @@ package com.a2driano.city.my.weather.domain;
 
 import android.util.Log;
 
-import com.a2driano.city.my.weather.R;
 import com.a2driano.city.my.weather.data.repository.model.WeatherDAO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherDTO;
 import com.a2driano.city.my.weather.data.retrofit.model.WeatherForecastDTO;
 import com.a2driano.city.my.weather.domain.application.App;
-import com.a2driano.city.my.weather.domain.interactors.IteractorWeatherFromServerToDb;
+import com.a2driano.city.my.weather.domain.interactors.InteractorWeatherFromServerToDb;
 import com.a2driano.city.my.weather.utils.message.manager.MessageManager;
 
 import java.util.ArrayList;
@@ -18,12 +17,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.a2driano.city.my.weather.utils.converter.WeatherConverter.convertListDTOtoDAO;
+import static com.a2driano.city.my.weather.utils.converter.WeatherConverter.convertWeatherForecastDTOtoWeatherDAO;
 
 /**
  * Created by Andrii Papai on 17.09.2017.
  */
 
-public class WeatherProvider implements IteractorWeatherFromServerToDb {
+public class WeatherProvider implements InteractorWeatherFromServerToDb {
     private long cityId;
     private String units;
     private List<WeatherDTO> mWeatherDTOList;
@@ -42,10 +42,8 @@ public class WeatherProvider implements IteractorWeatherFromServerToDb {
 
                 if (response.isSuccessful() & response.body() != null) {
                     WeatherForecastDTO forecast = response.body();
-//                    List<WeatherDTO> list = forecast.getList();
-                    mWeatherDTOList = forecast.getList();
-                    if (mWeatherDTOList.size() > 0) {
-                        saveWeatherToDb(mWeatherDTOList);//success
+                    if (forecast.getList().size() > 0) {
+                        saveWeatherToDb(forecast);//success
                         Log.d("Download Forecast", "******************* success!");
                     }
                 } else if (response.code() != 200) {
@@ -64,8 +62,8 @@ public class WeatherProvider implements IteractorWeatherFromServerToDb {
     }
 
     @Override
-    public void saveWeatherToDb(List<WeatherDTO> listDTO) {
-        List<WeatherDAO> listDAO = convertListDTOtoDAO(listDTO);
+    public void saveWeatherToDb(WeatherForecastDTO weatherForecastDTO) {
+        List<WeatherDAO> listDAO = convertWeatherForecastDTOtoWeatherDAO(weatherForecastDTO);
         //add data to DB
         checkExistWeather(listDAO);
         MessageManager.getMessageSuccessAddCityToFavorite();

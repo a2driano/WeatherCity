@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Andrii Papai on 23.09.2017.
  */
 
-public interface IteractorWeatherDb {
+public interface InteractorWeatherDb {
     //return DAO of weather city for 5 days
     public List<WeatherDAO> getWeatherCityFromDB();
 }
